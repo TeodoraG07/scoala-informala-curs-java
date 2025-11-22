@@ -1,0 +1,31 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package phoneapplication;
+
+import java.util.ArrayList;
+
+public class Samsung extends phoneapplication.Phone {
+    private final int batteryLive;
+    protected phoneapplication.Message messages;
+    protected phoneapplication.Contact contacts;
+    protected phoneapplication.Call calls;
+
+    public Samsung(int batteryLive, String manufacturer, String model, String color, String material, String imei) {
+        this.batteryLive = this.baterryLive;
+        this.manufacturer = this.manufacturer;
+        this.model = this.model;
+        this.color = this.color;
+        this.material = this.material;
+        this.imei = this.imei;
+        this.calllist = new ArrayList();
+        this.contactlist = new ArrayList();
+        this.messageslist = new ArrayList();
+        this.messages = this.messages;
+        this.contacts = this.contacts;
+        this.calls = this.calls;
+        this.remainingBaterry = batteryLive;
+    }
+}
