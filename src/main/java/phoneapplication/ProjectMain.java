@@ -2,12 +2,12 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
-
-package ro.scoala_informala;
+//ignore this message
+package phoneapplication;
 
 public class ProjectMain {
     public static void main(String[] args) {
-        phoneapplication.Phone phone = new phoneapplication.SamsungGalaxy6();
+        Phone phone = new SamsungGalaxy6();
         phone.addContact(1, "phone number", "first name", "last name");
         phone.addContact(2, "second phone number", "second first name", "second last name");
         phone.getFirstContact();

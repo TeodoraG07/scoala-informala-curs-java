@@ -2,10 +2,10 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
-
+//ignore this message
 package phoneapplication;
 
-public class SamsungGalaxy6 extends phoneapplication.Samsung {
+public class SamsungGalaxy6 extends Samsung {
     protected phoneapplication.Message messages;
     protected phoneapplication.Contact contacts;
     protected phoneapplication.Call calls;

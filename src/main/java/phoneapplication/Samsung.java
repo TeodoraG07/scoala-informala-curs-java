@@ -2,16 +2,16 @@
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
-
+//ignore this message
 package phoneapplication;
 
 import java.util.ArrayList;
 
-public class Samsung extends phoneapplication.Phone {
+public class Samsung extends Phone {
     private final int batteryLive;
-    protected phoneapplication.Message messages;
-    protected phoneapplication.Contact contacts;
-    protected phoneapplication.Call calls;
+    protected String messages;
+    protected String contacts;
+    protected String calls;
 
     public Samsung(int batteryLive, String manufacturer, String model, String color, String material, String imei) {
         this.batteryLive = this.baterryLive;
