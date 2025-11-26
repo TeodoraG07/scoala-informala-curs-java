@@ -1,17 +1,14 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-//ignore this message
 package phoneapplication;
 
 import java.util.ArrayList;
 
 public class Samsung extends Phone {
+
     private final int batteryLive;
-    protected String messages;
-    protected String contacts;
-    protected String calls;
+    protected Message messages;
+    protected Contact contacts;
+    protected Call calls;
+
 
     public Samsung(int batteryLive, String manufacturer, String model, String color, String material, String imei) {
         this.batteryLive = this.baterryLive;
@@ -20,12 +17,18 @@ public class Samsung extends Phone {
         this.color = this.color;
         this.material = this.material;
         this.imei = this.imei;
-        this.calllist = new ArrayList();
-        this.contactlist = new ArrayList();
-        this.messageslist = new ArrayList();
-        this.messages = this.messages;
-        this.contacts = this.contacts;
-        this.calls = this.calls;
+        this.calllist = new ArrayList<>();
+        this.contactlist = new ArrayList<>();
+        this.messageslist = new ArrayList<>();
+        this.messages = messages;
+        this.contacts = contacts;
+        this.calls = calls;
         this.remainingBaterry = batteryLive;
     }
+
+
 }
+
+
+
+

@@ -1,10 +1,5 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package phoneapplication;
-//ignore this message
+
 public class Call {
     protected int callId;
     protected String callerFirtName;

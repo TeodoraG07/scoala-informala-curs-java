@@ -1,125 +1,133 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 package phoneapplication;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Phone implements phoneapplication.HandleCalls, phoneapplication.HandleContacts, phoneapplication.HandleMessages {
+public class Phone implements HandleCalls, HandleContacts, HandleMessages {
     protected String manufacturer;
     protected String model;
     protected String color;
     protected String material;
     protected String imei;
     protected int baterryLive;
-    protected List<phoneapplication.Call> calllist;
-    protected List<phoneapplication.Message> messageslist;
-    protected List<phoneapplication.Contact> contactlist;
+    protected List<Call> calllist;
+    protected List<Message> messageslist;
+    protected List<Contact> contactlist;
     protected int remainingBaterry;
 
+
+    @Override
     public void call(String phoneNumber) {
-        phoneapplication.Call call = new phoneapplication.Call(phoneNumber);
+        Call call = new Call(phoneNumber);
         this.calllist.add(call);
         System.out.println("Calling " + phoneNumber);
-        this.remainingBaterry -= 2;
+        this.remainingBaterry = remainingBaterry - 2;
     }
 
+    @Override
     public void viewHistory() {
-        for(phoneapplication.Call call : this.calllist) {
+        for (Call call : calllist) {
             System.out.println("Call View History: " + call.callerFirtName + " " + call.callerLastName + " " + call.callerPhone);
+
         }
-
     }
 
+    @Override
     public void addContact(int id, String phoneNumber, String firstName, String lastName) {
-        phoneapplication.Contact newContact = new phoneapplication.Contact(id, phoneNumber, firstName, lastName);
-        this.contactlist.add(newContact);
+        Contact newContact = new Contact(id, phoneNumber, firstName, lastName);
+        contactlist.add(newContact);
     }
 
+    @Override
     public void viewContact(String firstName) {
-        for(phoneapplication.Contact contact : this.contactlist) {
+        for (Contact contact : contactlist) {
             if (contact.firstName.equals(firstName)) {
-                System.out.println("Contact Details: First Name: " + contact.firstName + " Last Name:  " + contact.lastName + " Phone: " + contact.phoneNumber);
+                System.out.println("Contact Details: " + "First Name: " + contact.firstName + " Last Name:  " + contact.lastName + " Phone: " + contact.phoneNumber);
             }
         }
-
     }
 
+    @Override
     public void getFirstContact() {
-        if (this.contactlist != null && !this.contactlist.isEmpty()) {
-            phoneapplication.Contact first = (phoneapplication.Contact)this.contactlist.get(0);
+        if (contactlist != null && !contactlist.isEmpty()) {
+            Contact first = contactlist.get(0);
             System.out.println("First Name: " + first.firstName + " Last Name:  " + first.lastName);
         } else {
             System.out.println("No contacts available.");
-        }
 
+        }
     }
 
+    @Override
     public void getLastContact() {
-        if (this.contactlist != null && !this.contactlist.isEmpty()) {
-            phoneapplication.Contact last = (phoneapplication.Contact)this.contactlist.get(this.contactlist.size() - 1);
-            System.out.println("Last contact: First Name:" + last.firstName + " Last Name:" + last.lastName);
+        if (contactlist != null && !contactlist.isEmpty()) {
+            Contact last = contactlist.get(contactlist.size() - 1);
+            System.out.println("Last contact: " + "First Name:" + last.firstName + " Last Name:" + last.lastName);
         } else {
             System.out.println("No contacts available.");
+
         }
-
     }
 
+    @Override
     public void sendMessage(String phoneNumber, String messageBody) {
-        phoneapplication.Message message = new phoneapplication.Message(phoneNumber, messageBody);
-        this.messageslist.add(message);
-        --this.remainingBaterry;
+        Message message = new Message(phoneNumber, messageBody);
+        messageslist.add(message);
+        this.remainingBaterry = remainingBaterry - 1;
     }
 
+    @Override
     public void seeMessage() {
+
     }
 
+    @Override
     public void getFirstMessage(String phoneNumber) {
-        List<phoneapplication.Message> messagesfiltered = new ArrayList();
-
-        for(phoneapplication.Message message : this.messageslist) {
+        List<Message> messagesfiltered = new ArrayList<>();
+        for (Message message : messageslist) {
             if (phoneNumber.equals(phoneNumber)) {
                 messagesfiltered.add(message);
-                phoneapplication.Message first = (phoneapplication.Message)messagesfiltered.get(0);
-                System.out.println("First message for " + first.phoneNumber + " : " + first.messageBody);
-                return;
+                Message first = messagesfiltered.get(0);
+                {
+                    System.out.println("First message for " + first.phoneNumber + " : " + first.messageBody);
+                    return;
+                }
             }
         }
-
     }
 
+    @Override
     public void getLastMessage(String phoneNumber) {
-        List<phoneapplication.Message> messagesFiltered = new ArrayList();
-
-        for(phoneapplication.Message message : this.messageslist) {
+        List<Message> messagesFiltered = new ArrayList<>();
+        for (Message message : messageslist) {
             if (phoneNumber.equals(phoneNumber)) {
                 messagesFiltered.add(message);
-                phoneapplication.Message last = (phoneapplication.Message)messagesFiltered.get(messagesFiltered.size() - 1);
-                System.out.println("Last message for " + last.phoneNumber + " : " + last.messageBody);
-                return;
-            }
-        }
-
-    }
-
-    public void getSecondMessage(String phoneNumber) {
-        List<phoneapplication.Message> messagesfiltered = new ArrayList();
-
-        for(phoneapplication.Message message : this.messageslist) {
-            if (phoneNumber.equals(phoneNumber)) {
-                if (messagesfiltered.size() < 2) {
-                    System.out.println("Less than two messages found.");
+                Message last = messagesFiltered.get(messagesFiltered.size() - 1);
+                {
+                    System.out.println("Last message for " + last.phoneNumber + " : " + last.messageBody);
                     return;
                 }
 
-                phoneapplication.Message second = (phoneapplication.Message)messagesfiltered.get(1);
-                System.out.println("Second message: " + second.messageBody);
             }
+        }
+    }
+
+    @Override
+    public void getSecondMessage(String phoneNumber) {
+        List<Message> messagesfiltered = new ArrayList<>();
+
+        for (Message message : messageslist) {
+            if (phoneNumber.equals(phoneNumber)) {
+                if (messagesfiltered.size() >= 2) {
+                    Message second = messagesfiltered.get(1);
+                    System.out.println("Second message: " + second.messageBody);
+                } else {
+                    System.out.println("Less than two messages found.");
+                    return;
+                }
+            }
+
         }
 
     }
 }
-

@@ -1,16 +1,12 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-//ignore this message
 package phoneapplication;
 
 public interface HandleContacts {
-    void addContact(int var1, String var2, String var3, String var4);
+    void addContact(int id, String phoneNumber, String firstName, String lastName);
 
-    void viewContact(String var1);
+    void viewContact(String firstName);
 
     void getFirstContact();
 
     void getLastContact();
 }
+

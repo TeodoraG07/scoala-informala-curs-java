@@ -1,8 +1,3 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-//ignore this message
 package phoneapplication;
 
 public class Contact {
@@ -17,4 +12,6 @@ public class Contact {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
     }
+
 }
+

@@ -1,18 +1,14 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-//ignore this message
 package phoneapplication;
 
 public interface HandleMessages {
-    void sendMessage(String var1, String var2);
+    void sendMessage(String phoneNumber, String messageBody);
 
     void seeMessage();
 
-    void getFirstMessage(String var1);
+    void getFirstMessage(String phoneNumber);
 
-    void getLastMessage(String var1);
+    void getLastMessage(String phoneNumber);
 
-    void getSecondMessage(String var1);
+    void getSecondMessage(String phoneNumber);
+
 }
