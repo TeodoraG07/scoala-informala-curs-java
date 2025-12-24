@@ -1,21 +1,17 @@
 package ro.scoala_informala;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class AthletesCsvReader {
-    public List<Athletes> readAthletes(BufferedReader bufferedReader) {
-        String path = "Athletes.csv";
-        List<Athletes> athletes = new ArrayList<Athletes>();
+    public List<Athletes> parse(String csvContent) {
+        List<Athletes> athletes = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(
-                Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Athletes.csv")),
-                StandardCharsets.UTF_8))) {
+        try (BufferedReader br = new BufferedReader(new StringReader(csvContent))) {
             String line;
             boolean firstLine = true;
             while ((line = br.readLine()) != null) {
@@ -25,18 +21,17 @@ public class AthletesCsvReader {
                 }
 
                 line = line.replace("\"", "");
-
                 String[] parts = line.split(",");
-                int id = Integer.parseInt(parts[0]);
-                String name = parts[1];
+
+                int id = Integer.parseInt(parts[0].trim());
+                String name = parts[1].trim();
                 Athletes.Country country = Athletes.Country.valueOf(parts[2].trim());
+                int skiTimeInSeconds = parseSkiTimeToSeconds(parts[3].trim());
+                int firstShootingRange = calculateShootingScore(parts[4].trim());
+                int secondShootingRange = calculateShootingScore(parts[5].trim());
+                int thirdShootingRange = calculateShootingScore(parts[6].trim());
 
-                int skiTimeInSeconds = parseSkiTimeToSeconds(parts[3]);
-                int firstShootingRange = calculateShootingScore(parts[4]);
-                int secondShootingRange = calculateShootingScore(parts[5]);
-                int thirdShootingRange = calculateShootingScore(parts[6]);
-
-                Athletes athlete = new Athletes(
+                athletes.add(new Athletes(
                         id,
                         name,
                         country,
@@ -44,17 +39,17 @@ public class AthletesCsvReader {
                         firstShootingRange,
                         secondShootingRange,
                         thirdShootingRange
-                );
-
-                athletes.add(athlete);
+                ));
             }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         return athletes;
     }
 
-    private  int calculateShootingScore(String pattern) {
+    private int calculateShootingScore(String pattern) {
         int score = 0;
         for (char c : pattern.toCharArray()) {
             if (c == 'o') {
@@ -62,23 +57,21 @@ public class AthletesCsvReader {
             } else if (c == 'x') {
                 score += 0;
             } else {
-                throw new IllegalArgumentException("Invalid shooting character: " + c);
+                throw new IllegalArgumentException(
+                        "Invalid shooting character: " + c
+                );
             }
         }
         return score;
     }
 
-
     private int parseSkiTimeToSeconds(String time) {
         String[] t = time.split(":");
         int minutes = Integer.parseInt(t[0]);
         int seconds = Integer.parseInt(t[1]);
-        int hundredths = Integer.parseInt(t[2]);
-
         return minutes * 60 + seconds;
     }
-
-    }
+}
 
 
 

@@ -7,21 +7,15 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        CsvFileLoader csvreader = new CsvFileLoader();
+        String csvContent =  csvreader.readCsvFile("Athletes.csv");
+        AthletesCsvReader  athletesreader = new AthletesCsvReader();
+        List <Athletes> athletes= athletesreader.parse(csvContent);
+        sortAthletesByTime(athletes);
+    }
 
-        AthletesCsvReader reader = new AthletesCsvReader();
-        String path = "Athletes.csv";
-        List<Athletes> athletes = reader.readAthletes(new BufferedReader(new StringReader(path)));
-
-//        for (Athletes athlete : athletes) {
-//            System.out.println(athlete);
-
-        for (Athletes athlete : athletes) {
-            System.out.println(
-                    athlete.getName() + " " + athlete.finalTimeSeconds()
-            );
-        }
+    private static void sortAthletesByTime(List<Athletes> athletes) {
         athletes.sort(Comparator.comparingInt(Athletes::finalTimeSeconds));
-
         int rank = 1;
         for (Athletes athlete : athletes) {
             System.out.println(
@@ -31,5 +25,5 @@ public class Main {
 
         }
     }
-
 }
+

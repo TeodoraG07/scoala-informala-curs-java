@@ -6,7 +6,7 @@ public class Athletes {
     Country country;
     private int skiTimeInSeconds;
     private int firstShootingRange;
-    private int  secondShootingRange;
+    private int secondShootingRange;
     private int thirdShootingRange;
 
 
@@ -20,12 +20,9 @@ public class Athletes {
         this.thirdShootingRange = thirdShootingRange;
     }
 
-
-
     public enum Country {
         RO, UK, SK, CZ, PL, TR, USA
     }
-
 
     private Country parseCountry(String value) {
         try {
@@ -50,14 +47,24 @@ public class Athletes {
 
     public int finalTimeSeconds() {
         return (int) (skiTimeInSeconds
-                        + firstShootingRange
-                        + secondShootingRange
-                        + thirdShootingRange);
+                + firstShootingRange
+                + secondShootingRange
+                + thirdShootingRange);
     }
 
     public String getName() {
         return name;
     }
+    public Country getCountry() {
+        return country;
+    }
+    public int getId() {
+        return id;
+    }
+
+
+
+
 
     public int calculateShootingScore(String pattern) {
         int score = 0;
