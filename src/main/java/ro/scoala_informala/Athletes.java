@@ -55,16 +55,30 @@ public class Athletes {
     public String getName() {
         return name;
     }
+
     public Country getCountry() {
         return country;
     }
+
     public int getId() {
         return id;
     }
 
+    public int getSkiTimeInSeconds() {
+        return skiTimeInSeconds;
+    }
 
+    public int getFirstShootingRange() {
+        return firstShootingRange;
+    }
 
+    public int getSecondShootingRange() {
+        return secondShootingRange;
+    }
 
+    public int getThirdShootingRange() {
+        return thirdShootingRange;
+    }
 
     public int calculateShootingScore(String pattern) {
         int score = 0;
