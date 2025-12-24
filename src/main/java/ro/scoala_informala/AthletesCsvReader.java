@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class AthletesCsvReader {
-    public List<Athletes> readAthletes() {
+    public List<Athletes> readAthletes(BufferedReader bufferedReader) {
         String path = "Athletes.csv";
         List<Athletes> athletes = new ArrayList<Athletes>();
 
@@ -33,15 +31,10 @@ public class AthletesCsvReader {
                 String name = parts[1];
                 Athletes.Country country = Athletes.Country.valueOf(parts[2].trim());
 
-                int skiTimeInSeconds =
-                        parseSkiTimeToSeconds(parts[3]);
-
-                int firstShootingRange =
-                        calculateShootingScore(parts[4]);
-                int secondShootingRange =
-                        calculateShootingScore(parts[5]);
-                int thirdShootingRange =
-                        calculateShootingScore(parts[6]);
+                int skiTimeInSeconds = parseSkiTimeToSeconds(parts[3]);
+                int firstShootingRange = calculateShootingScore(parts[4]);
+                int secondShootingRange = calculateShootingScore(parts[5]);
+                int thirdShootingRange = calculateShootingScore(parts[6]);
 
                 Athletes athlete = new Athletes(
                         id,
@@ -61,12 +54,12 @@ public class AthletesCsvReader {
         return athletes;
     }
 
-    private int calculateShootingScore(String pattern) {
+    private  int calculateShootingScore(String pattern) {
         int score = 0;
         for (char c : pattern.toCharArray()) {
-            if (c == 'x') {
+            if (c == 'o') {
                 score += 10;
-            } else if (c == 'o') {
+            } else if (c == 'x') {
                 score += 0;
             } else {
                 throw new IllegalArgumentException("Invalid shooting character: " + c);
@@ -84,7 +77,9 @@ public class AthletesCsvReader {
 
         return minutes * 60 + seconds;
     }
-}
+
+    }
+
 
 
 
