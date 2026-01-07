@@ -21,11 +21,11 @@ public class DeleteStudentTest {
         student.firstName = "Matei";
         student.lastName = "Ionas";
         student.gender = "m";
-        student.idCNP = "1200505123456";
+        student.idCNP = "1200505123496";
         student.dateOfBirth = 2000;
 
         repository.addStudent(student);
-        assertDoesNotThrow(() -> repository.deleteStudent("1200505123456"));
+        assertDoesNotThrow(() -> repository.deleteStudent("1200505123496"));
     }
 
     @Test
