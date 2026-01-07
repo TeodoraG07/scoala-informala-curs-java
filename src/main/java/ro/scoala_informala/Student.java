@@ -1,13 +1,13 @@
 package ro.scoala_informala;
 
 public class Student {
-    String firstName;
-    String lastName;
-    int dateOfBirth;
-    String gender;
-    String idCNP;
+    public String firstName;
+    public String lastName;
+    public int dateOfBirth;
+    public String gender;
+    public String idCNP;
 
-    Student() {
+    public Student() {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;

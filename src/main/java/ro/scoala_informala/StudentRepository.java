@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 public class StudentRepository {
 
-    private final Map<String, Student> students = new HashMap<>();
+    protected   Map<String, Student> students = new HashMap<>();
 
     public void addStudent(Student student) {
         logger.info("Adding student: " + student);
