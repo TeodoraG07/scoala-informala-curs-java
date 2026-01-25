@@ -1,58 +1,26 @@
 package ro.scoala_informala;
 
-import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    private static final Logger logger =
-            Logger.getLogger(Main.class.getName());
-
     public static void main(String[] args) {
-        StudentRepository repository = new StudentRepository();
-        try {
-            Student student = new Student();
-            student.firstName = "Ion";
-            student.lastName = "Bejan";
-            student.gender = "m";
-            student.idCNP = "2980505123470";
-            student.dateOfBirth = 2001;
-            repository.addStudent(student);
+        Path inputFile = Path.of("TestFile.csv");
 
+        Path outputFile = Path.of("Output.txt");
 
-            Student student2 = new Student();
-            student2.firstName = "Ion";
-            student2.lastName = "Colesov";
-            student2.gender = "m";
-            student2.idCNP = "2980505123460";
-            student2.dateOfBirth = 2001;
-            repository.addStudent(student2);
+        int month = 12;
 
-            System.out.println("Student added successfully!");
+        FileManagement fileManagement = new FileManagement();
+        List<String> lines = fileManagement.readLines(inputFile.toString());
 
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error adding student: " + e.getMessage());
-        }
+        PersonManagement personManagement = new PersonManagement();
+        List<String> outputLines = personManagement.process(lines, month);
 
-//        try {
-//            repository.deleteStudent("2980505123450");
-//            System.out.println("Student deleted successfully");
-//        } catch (IllegalArgumentException e) {
-//            System.out.println("Delete error: " + e.getMessage());
-//        }
-        try {
-            System.out.println("Students aged 25:");
-            repository.retrieveStudentsByAge("25")
-                    .forEach(s -> System.out.println(s.firstName + " " + s.lastName));
+        fileManagement.writeLines(outputFile.toString(), outputLines);
 
-            System.out.println("Students ordered by last name:");
-            repository.listStudentsOrderedBy("lastName")
-                    .forEach(s -> System.out.println(s.lastName));
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
+        System.out.println("Matches written to " + outputFile + ":");
+        outputLines.forEach(System.out::println);
     }
-
 }
