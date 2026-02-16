@@ -21,7 +21,6 @@ public class FestivalStatisticsThread extends Thread {
                     for (TicketType ticketType : TicketType.values()) {
                         stats.put(ticketType, 0);
                     }
-
                     for (TicketType ticketType : festivalGate.getTickets()) {
                         stats.put(ticketType, stats.get(ticketType) + 1);
                     }
@@ -32,7 +31,6 @@ public class FestivalStatisticsThread extends Thread {
 
                     }
                     System.out.println("-----");
-
 
                 }
             } catch (InterruptedException e) {
